@@ -1,0 +1,20 @@
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Home #
+# ~~~~~
+GET     /     	                  controllers.Txeopedia.index
+
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Categories  #
+# ~~~~~~~~~~~~~
+GET     /categories               controllers.Txeopedia.listCategories
+POST    /categories               controllers.Txeopedia.createCategory
+GET /categories/:id/delete        controllers.Txeopedia.deleteCategory(id: Long)
+GET /categories/:id/detail        controllers.Txeopedia.detailCategory(id: Long)
+
+GET  /getWeather    controllers.Application.getWeather
+
+# ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+# Map static resources from the /public folder to the /assets URL path
+# ~~~~~~~~~~~~~
+GET     /assets/*file       controllers.Assets.at(path="/public", file)

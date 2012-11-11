@@ -1,0 +1,26 @@
+@(categories: List[Category], categoryInsertForm: Form[String])
+@import helper._
+   
+@main("Categories") {
+    <div class="form">
+        @form(routes.Txeopedia.createCategory()) {
+            @inputText(categoryInsertForm ("name"),'_label -> "Name")
+            <input type="submit" value="Create">
+        }
+    </div>
+}
+<table class="table">
+    @for(category <- categories) {
+        <tr>
+            <td>@category.name</td>
+            <td><button onclick="@routes.Txeopedia.detailCategory(category.id)">Detail</button></td>
+            <td><button onclick="@routes.Txeopedia.deleteCategory(category.id)">Delete</button></td>
+        </tr>
+    }
+</table>
+
+<div id="results">
+    
+    Aquí va la morralla
+    
+</div>

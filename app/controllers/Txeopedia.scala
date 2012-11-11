@@ -19,7 +19,7 @@ object Txeopedia extends Controller {
   /******************************/
   // Actions
   /******************************/
-  def index = listCategories ("Empezamos")
+  def index = listCategories
   
   /******************************/
 
@@ -27,10 +27,10 @@ object Txeopedia extends Controller {
 /**
  * Poz eso
  */
-def listCategories (text: String) = Action {
+def listCategories = Action {
 
    // Le pasamos la lista de categorías y el formulario de inserción  
-   Ok(views.html.index(Category.list(), categoryCreateForm, text))
+   Ok(views.html.index(Category.list(), categoryCreateForm))
 
 }
 
@@ -39,10 +39,10 @@ def listCategories (text: String) = Action {
  */
 def createCategory = Action { implicit request =>
     categoryCreateForm.bindFromRequest.fold(
-      errors => BadRequest(views.html.index(Category.list (), errors, "ERROR")),
+      errors => BadRequest(views.html.index(Category.list (), errors)),
       category => {
         Category.create(category)
-        Redirect (routes.Txeopedia.listCategories("Insertada categoría "+category))
+        Redirect (routes.Txeopedia.listCategories)
       }
     )
   }
@@ -50,17 +50,17 @@ def createCategory = Action { implicit request =>
 /**
  * Poz eso
  */
-def detailCategory (id: Long) = getWeather
+def detailCategory (id: Long) = TODO
 
   /**
  * Poz eso
  */
 def deleteCategory (id: Long) = Action {
     Category.delete (id)
-    Redirect (routes.Txeopedia.listCategories ("Borrado elemento con id"+id))
+    Redirect (routes.Txeopedia.listCategories)
   }
 
-def getWeather = Action {
+  def getWeather = Action {
     import play.api.libs.concurrent.Akka
     import play.api.libs.ws.{WS, Response}
     import play.api.Play.current
